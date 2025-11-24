@@ -3,38 +3,38 @@
    This lets the LED blink while the rest of the program keeps running.
 */
 
-const int ledPin = LED_BUILTIN;  // On-board LED pin
+const int ledPin = LED_BUILTIN;   // The pin connected to the built-in LED
 
-int ledState = LOW;              // Current LED state
-unsigned long previousMillis = 0; // Last time the LED changed state
-const long interval = 1000;       // Blink speed in milliseconds
+int ledState = LOW;               // Keeps track of whether the LED is ON or OFF
+unsigned long previousMillis = 0; // Stores the last time the LED changed
+const long interval = 1000;       // How long to wait before toggling the LED (1 second)
 
 void setup() {
-  // Set the LED pin as an output
+  // Set the LED pin as an output so we can control it
   pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
-  // Get the time since the Arduino started running
+  // Get the number of milliseconds since the Arduino started running
   unsigned long currentMillis = millis();
 
-  // Check if it's time to toggle the LED
+  // Check if enough time has passed to change the LED state
   if (currentMillis - previousMillis >= interval) {
 
-    // Update the timestamp
+    // Save the current time as the new "last toggle" time
     previousMillis = currentMillis;
 
-    // Flip the LED state
+    // If the LED was OFF, turn it ON. If it was ON, turn it OFF.
     if (ledState == LOW) {
       ledState = HIGH;
     } else {
       ledState = LOW;
     }
 
-    // Apply the new LED state
+    // Update the actual LED to match the new state
     digitalWrite(ledPin, ledState);
   }
 
-  // Other code can still run here without being blocked
+  // Code placed here would run without being delayed or blocked
 }
 
