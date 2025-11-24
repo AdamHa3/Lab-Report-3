@@ -4,19 +4,21 @@
 */
 
 void setup() {
-  // Open the Serial Monitor at 9600 so we can see the readings
+  // Start the Serial Monitor at 9600 baud so we can see the output
   Serial.begin(9600);
 }
 
 void loop() {
-  // Read the raw analog value (0–1023)
+  // Read the analog value from A0 (range: 0 to 1023)
   int V = analogRead(A0);
 
-  // Convert the reading into a voltage
+  // Convert the analog value into a voltage using the formula:
+  // voltage = (ADC value * 5V) / 1023
   float VA = V * (5.0 / 1023.0);
 
-  // Show the voltage in the Serial Monitor
+  // Print the label "VA = "
   Serial.print("VA = ");
+
+  // Print the calculated voltage
   Serial.println(VA);
 }
-
