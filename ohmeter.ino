@@ -5,21 +5,23 @@
 */
 
 void setup() {
-  // Start the Serial Monitor
+  // Start the Serial Monitor at 9600 baud so we can see the results
   Serial.begin(9600);
 }
 
 void loop() {
-  // Read the analog value (0–1023)
+  // Read the analog value from A0 (range: 0 to 1023)
   int V = analogRead(A0);
 
-  // Convert the ADC value into the actual voltage
+  // Convert the raw ADC reading into a voltage (0V to about 5V)
   float VA = V * (5.0 / 1023.0);
 
-  // Current through the 10k resistor (using the source voltage 5V)
+  // Calculate the current flowing through the 10k resistor
+  // Formula: I = (5V - measured voltage) / 10,000 ohms
   float I = (5.0 - VA) / 10000.0;
 
-  // Calculate the unknown resistance using R = V / I
+  // Calculate the value of the unknown resistor using Ohm's law
+  // R = V / I
   float R = VA / I;
 
   // Print the resistance value
