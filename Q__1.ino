@@ -4,15 +4,17 @@
 */
 
 void setup() {
-  // Start the serial monitor at 9600 so we can see the values
+  // Start the Serial Monitor at 9600 baud
   Serial.begin(9600);
 }
 
 void loop() {
-  // Read the analog value on pin A0
+  // Read the analog value from pin A0 (0 to 1023)
   int V = analogRead(A0);
 
-  // Show the value in the Serial Monitor
+  // Print the label "SensorValue = "
   Serial.print("SensorValue = ");
+
+  // Print the actual value stored in V
   Serial.println(V);
 }
